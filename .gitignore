@@ -7,3 +7,7 @@ dist/
 *.log.tmp
 .vercel
 *.tsbuildinfo
+
+.vercel
+.env*
+backend/supabase/
