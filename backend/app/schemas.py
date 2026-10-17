@@ -159,7 +159,6 @@ class IncidentDetail(IncidentSummary):
 class ServiceStatus(BaseModel):
     id: str
     name: str
-    url: str
     status: Literal["up", "degraded", "down", "pending"]
     latency_ms: float | None = None
     http_status: int | None = None

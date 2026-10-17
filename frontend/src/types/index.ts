@@ -89,7 +89,6 @@ export interface IncidentDetail extends IncidentSummary {
 export interface ServiceStatus {
   id: string;
   name: string;
-  url: string;
   status: "up" | "degraded" | "down" | "pending";
   latency_ms: number | null;
   http_status: number | null;
@@ -128,11 +127,9 @@ export interface Health {
   status: string;
   access_protected: boolean;
   monitoring_mode: MonitoringMode;
-  monitor: { targets: { name: string; url: string }[]; interval_s: number; degraded_ms: number };
-  ai: { provider: string; configured: boolean; model: string; endpoint: string; auth_header: string };
-  limits: { max_log_kb: number; max_lines: number; max_ai_excerpt_lines: number; upload_types: string[] };
-  database: string;
-  cors_origins: string[];
+  monitored: string[];
+  ai: { provider: string; configured: boolean };
+  max_log_kb: number;
 }
 
 export interface Scenario {

@@ -71,25 +71,14 @@ def _check_size(text: str) -> None:
 # ------------------------------------------------------------------ system
 @app.get("/api/health")
 def health():
+    # Public endpoint: report status only, never internal URLs, limits or configuration.
     return {
         "status": "ok",
         "access_protected": bool(config.ACCESS_CODE),
         "monitoring_mode": _monitoring_mode(),
-        "monitor": {"targets": [{"name": n, "url": u} for _, n, u in monitoring.targets()],
-                    "interval_s": config.MONITOR_INTERVAL_S, "degraded_ms": config.MONITOR_DEGRADED_MS},
-        "ai": {
-            "provider": "Sarvam AI",
-            "configured": sarvam.is_configured(),
-            "model": config.SARVAM_MODEL,
-            "endpoint": f"{config.SARVAM_BASE_URL}/chat/completions",
-            "auth_header": "api-subscription-key",
-        },
-        "limits": {"max_log_kb": config.MAX_LOG_BYTES // 1024, "max_lines": config.MAX_LOG_LINES,
-                   "max_ai_excerpt_lines": config.MAX_AI_EXCERPT_LINES,
-                   "upload_types": sorted(config.ALLOWED_UPLOAD_EXTENSIONS)},
-        "database": ("Supabase · " + config.SUPABASE_URL.split("//")[-1]) if db.BACKEND == "supabase"
-                    else f"SQLite · {Path(config.DB_PATH).name}",
-        "cors_origins": config.CORS_ORIGINS,
+        "monitored": [name for _, name, _ in monitoring.targets()],
+        "ai": {"provider": "Sarvam AI", "configured": sarvam.is_configured()},
+        "max_log_kb": config.MAX_LOG_BYTES // 1024,
     }
 
 

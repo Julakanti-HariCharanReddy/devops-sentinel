@@ -96,12 +96,12 @@ def snapshot() -> tuple[list[ServiceStatus], list[dict]]:
     for sid, name, url in targets():
         checks = list(_results.get(sid, []))
         if not checks:
-            out.append(ServiceStatus(id=sid, name=name, url=url, status="pending"))
+            out.append(ServiceStatus(id=sid, name=name, status="pending"))
             continue
         last = checks[-1]
         ok = sum(1 for c in checks if c["ok"])
         out.append(ServiceStatus(
-            id=sid, name=name, url=url, status=_status(last), latency_ms=last["latency_ms"],
+            id=sid, name=name, status=_status(last), latency_ms=last["latency_ms"],
             http_status=last["http_status"], error=last["error"], last_checked=last["ts"], checks=len(checks),
             availability_pct=round(ok / len(checks) * 100, 1),
             failure_rate=round((len(checks) - ok) / len(checks) * 100, 1),

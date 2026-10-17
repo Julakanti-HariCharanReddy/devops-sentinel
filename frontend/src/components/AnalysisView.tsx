@@ -53,7 +53,7 @@ export default function AnalysisView({ a }: { a: Analysis }) {
             <ol className="space-y-3">
               {a.troubleshooting_steps.map((s, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/[0.04] text-[11px] text-slate-400 ring-1 ring-line">{i + 1}</span>
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/[0.04] text-xs text-slate-400 ring-1 ring-line">{i + 1}</span>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-sm text-slate-200">{s.step}</p>

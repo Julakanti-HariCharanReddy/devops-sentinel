@@ -68,7 +68,7 @@ export default function App() {
         </div>
         <div className="leading-tight">
           <div className="text-sm font-semibold text-white">DevOps Sentinel</div>
-          <div className="text-[11px] font-medium tracking-wide text-accent">AI</div>
+          <div className="text-xs font-medium tracking-wide text-accent">AI</div>
         </div>
       </div>
       <div className="flex-1 space-y-0.5 px-3">
@@ -89,7 +89,7 @@ export default function App() {
         <div className="flex items-center gap-2">
           <span className={`h-2 w-2 rounded-full ${health.error ? "bg-red-500" : aiOk ? "bg-emerald-400" : "bg-amber-400"}`} />
           <span className="text-slate-300">
-            {health.error ? "Backend offline" : aiOk ? "Sarvam AI configured" : health.loading ? "Checking…" : "Sarvam AI not configured"}
+            {health.error ? "Server offline" : aiOk ? "AI analysis ready" : health.loading ? "Checking…" : "AI not configured"}
           </span>
         </div>
         <div className="mt-1.5 text-slate-500">Monitoring: {health.data?.monitoring_mode === "live" ? <span className="text-emerald-400">Live checks</span> : <span className="text-slate-400">Not configured</span>}</div>
@@ -100,7 +100,7 @@ export default function App() {
   return (
     <WorkspaceProvider page={page} go={go} focusIncident={id}>
       <div className="flex min-h-full">
-        <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 border-r border-line bg-sidebar lg:block">{sidebar}</aside>
+        <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 border-r border-white/[0.06] bg-sidebar/80 backdrop-blur-xl lg:block">{sidebar}</aside>
         {mobileNav && (
           <div className="fixed inset-0 z-40 lg:hidden">
             <div className="absolute inset-0 bg-black/60" onClick={() => setMobileNav(false)} />
@@ -118,7 +118,7 @@ export default function App() {
           </header>
           {health.error && (
             <div className="border-b border-red-500/30 bg-red-500/10 px-6 py-2 text-sm text-red-300">
-              Backend unreachable. Start it with <code className="font-mono">uvicorn app.main:app --port 8000</code> in <code className="font-mono">backend/</code>.
+              Can't reach the server right now. Retrying when you navigate.
             </div>
           )}
           <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
@@ -127,7 +127,7 @@ export default function App() {
             {page === "logs" && <LogAnalyzer />}
             {page === "analysis" && <IncidentAnalysis aiConfigured={!!aiOk} />}
             {page === "history" && <IncidentHistory />}
-            {page === "settings" && <Settings health={health.data} reloadHealth={health.reload} />}
+            {page === "settings" && <Settings health={health.data} />}
           </main>
         </div>
       </div>

@@ -23,7 +23,7 @@ const STATUS: Record<string, string> = {
 
 export function Pill({ className = "", children }: { className?: string; children: ReactNode }) {
   return (
-    <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium capitalize ring-1 ring-inset ${className}`}>
+    <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-0.5 text-xs font-medium capitalize ring-1 ring-inset ${className}`}>
       {children}
     </span>
   );

@@ -88,7 +88,7 @@ export default function IncidentHistory() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[820px] text-left text-sm">
-                <thead className="text-[11px] uppercase tracking-wider text-slate-500">
+                <thead className="text-xs uppercase tracking-wider text-slate-500">
                   <tr className="border-b border-line">
                     {["Incident", "Title", "Severity", "Status", "Service", "Root cause", "Created"].map((h) => <th key={h} className="px-4 py-2.5 font-semibold">{h}</th>)}
                   </tr>

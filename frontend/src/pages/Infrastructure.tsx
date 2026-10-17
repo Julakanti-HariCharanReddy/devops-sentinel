@@ -9,7 +9,7 @@ import { LatencyChart, seriesColor } from "../components/charts";
 function Metric({ label, value, icon, tone = "text-slate-100" }: { label: string; value: string; icon: React.ReactNode; tone?: string }) {
   return (
     <div className="rounded-lg border border-line bg-base/60 px-3 py-2.5">
-      <p className="flex items-center gap-1.5 text-[11px] text-slate-500">{icon}{label}</p>
+      <p className="flex items-center gap-1.5 text-xs text-slate-500">{icon}{label}</p>
       <p className={`mt-1 font-mono text-sm tabular-nums ${tone}`}>{value}</p>
     </div>
   );
@@ -25,7 +25,7 @@ function ServiceCard({ s, color }: { s: ServiceStatus; color: string }) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-white">{s.name}</p>
-            <p className="truncate font-mono text-[11px] text-slate-500" title={s.url}>{s.url}</p>
+            <p className="text-xs text-slate-500">HTTP health check</p>
           </div>
         </div>
         <StatusBadge s={s.status} />
@@ -47,7 +47,7 @@ function ServiceCard({ s, color }: { s: ServiceStatus; color: string }) {
         </>
       )}
       <div className="mt-4 flex items-center justify-between border-t border-line pt-3 text-xs text-slate-500">
-        <span>{s.checks} check{s.checks === 1 ? "" : "s"} retained</span>
+        <span>{s.checks} recent check{s.checks === 1 ? "" : "s"}</span>
         <span>Checked {fmtTime(s.last_checked)}</span>
       </div>
     </div>
@@ -71,7 +71,7 @@ export default function Infrastructure() {
 
   return (
     <>
-      <PageHeader title="Infrastructure" subtitle="Real HTTP health checks of the endpoints configured in MONITOR_TARGETS."
+      <PageHeader title="Infrastructure" subtitle="Live health of your monitored endpoints."
         actions={data && <><LiveTag mode={data.mode} />
           {data.mode === "live" && (
             <button className="btn-primary" onClick={refresh} disabled={refreshing}>
@@ -82,8 +82,7 @@ export default function Infrastructure() {
         data.mode === "unconfigured" ? (
           <div className="card">
             <Empty icon={<ServerOff className="h-7 w-7" />} title="No endpoints are being monitored">
-              Add targets to <code className="font-mono text-slate-300">backend/.env</code> and restart the backend:
-              <pre className="mt-3 rounded-lg border border-line bg-base px-3 py-2 text-left font-mono text-xs text-cyan-200">MONITOR_TARGETS=API|https://api.example.com/health;Web|https://example.com</pre>
+              Ask your administrator to add endpoints to monitor.
             </Empty>
           </div>
         ) : (
@@ -92,7 +91,7 @@ export default function Infrastructure() {
               {data.services.map((s, i) => <ServiceCard key={s.id} s={s} color={seriesColor(i)} />)}
             </div>
             <Card title="Response time history" className="mt-5"
-              actions={<span className="text-xs text-slate-500">Every {data.interval_s}s · {data.history.length} samples</span>}>
+              actions={<span className="text-xs text-slate-500">Last {data.history.length} checks</span>}>
               {data.history.length === 0 ? <Empty title="No checks completed yet" /> : <LatencyChart history={data.history} series={data.services} />}
             </Card>
           </>

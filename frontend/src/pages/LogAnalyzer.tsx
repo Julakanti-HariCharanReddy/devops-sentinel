@@ -141,7 +141,7 @@ export default function LogAnalyzer() {
                 const n = l === "ALL" ? parsed.stats.total_lines : l === "SUSPICIOUS" ? parsed.stats.suspicious : parsed.stats.by_level[l];
                 return (
                   <button key={l} onClick={() => setFilter(l)}
-                    className={`rounded-md px-2 py-1 text-[11px] font-medium transition-colors ${filter === l ? "bg-accent/15 text-accent" : "text-slate-400 hover:text-slate-200"}`}>
+                    className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${filter === l ? "bg-accent/15 text-accent" : "text-slate-400 hover:text-slate-200"}`}>
                     {l} <span className="text-slate-500">{n}</span>
                   </button>
                 );

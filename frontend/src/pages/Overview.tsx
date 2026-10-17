@@ -24,7 +24,7 @@ export default function Overview() {
         actions={<><LiveTag mode={data.monitoring_mode} /><button className="btn-ghost" onClick={reload}><RefreshCw className="h-4 w-4" />Refresh</button></>} />
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
-        <Stat label="Monitored endpoints" value={data.services_total} icon={<Server className="h-4 w-4" />} hint="From MONITOR_TARGETS" />
+        <Stat label="Monitored endpoints" value={data.services_total} icon={<Server className="h-4 w-4" />} hint="Live health checks" />
         <Stat label="Up" value={data.services_total ? `${data.services_up}/${data.services_total}` : "—"} tone="text-emerald-400" icon={<CheckCircle2 className="h-4 w-4" />} hint="Latest health check" />
         <Stat label="Active incidents" value={data.active_incidents} tone={data.active_incidents ? "text-amber-300" : "text-white"} icon={<Siren className="h-4 w-4" />} hint="From incident history" />
         <Stat label="Critical incidents" value={data.critical_incidents} tone={data.critical_incidents ? "text-red-400" : "text-white"} icon={<AlertOctagon className="h-4 w-4" />} hint="Open or investigating" />
@@ -35,7 +35,6 @@ export default function Overview() {
         <Card title="Infrastructure health · response time" actions={<button onClick={() => go("infrastructure")} className="flex items-center gap-1 text-xs text-accent hover:text-cyan-300">Details <ArrowRight className="h-3 w-3" /></button>}>
           {data.history.length === 0 ? (
             <Empty icon={<Server className="h-6 w-6" />} title={data.monitoring_mode === "live" ? "Waiting for first health check" : "No endpoints configured"}>
-              {data.monitoring_mode !== "live" && <>Set <code className="font-mono">MONITOR_TARGETS</code> in backend/.env.</>}
             </Empty>
           ) : <LatencyChart history={data.history} series={data.services} />}
         </Card>

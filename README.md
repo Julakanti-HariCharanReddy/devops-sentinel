@@ -41,8 +41,7 @@ cd "devops-sentinel-ai\backend"
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-copy .env.example .env
-notepad .env          # set SARVAM_API_KEY=sk_...
+notepad .env          # create it with: SARVAM_API_KEY=<your key>   (see table below)
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 

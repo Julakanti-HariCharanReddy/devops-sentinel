@@ -5,7 +5,7 @@
 2026-10-17T09:14:08.304Z WARN  [payment-service] Slow query detected duration=4211ms query="SELECT * FROM transactions WHERE merchant_id = $1 ORDER BY created_at"
 2026-10-17T09:14:09.912Z DEBUG [payment-service] db pool stats active=20 idle=0 waiting=7 max=20
 2026-10-17T09:14:11.045Z WARN  [payment-service] Timeout acquiring connection from pool after 5000ms (waiting=11)
-2026-10-17T09:14:11.046Z ERROR [payment-service] Database connection timeout: could not acquire connection to postgres://payments_app:Sup3rS3cret!@db-primary.internal:5432/payments within 5000ms
+2026-10-17T09:14:11.046Z ERROR [payment-service] Database connection timeout: could not acquire connection to postgres://payments_app:example-password@db-primary.internal:5432/payments within 5000ms
 2026-10-17T09:14:11.051Z ERROR [api-gateway] POST /api/checkout 500 5012ms upstream=payment-service request_id=7f2b90
 2026-10-17T09:14:12.330Z WARN  [postgres] remaining connection slots are reserved for non-replication superuser connections
 2026-10-17T09:14:12.877Z ERROR [postgres] FATAL: sorry, too many clients already (max_connections=100)
