@@ -1,0 +1,26 @@
+2026-10-17T09:14:02.118Z INFO  [api-gateway] GET /api/orders 200 41ms request_id=7f2a1c
+2026-10-17T09:14:02.502Z INFO  [payment-service] Charge processed order=88213 amount=1499 latency=162ms
+2026-10-17T09:14:03.010Z DEBUG [payment-service] db pool stats active=18 idle=2 waiting=0 max=20
+2026-10-17T09:14:05.771Z INFO  [api-gateway] GET /api/orders 200 58ms request_id=7f2a2e
+2026-10-17T09:14:08.304Z WARN  [payment-service] Slow query detected duration=4211ms query="SELECT * FROM transactions WHERE merchant_id = $1 ORDER BY created_at"
+2026-10-17T09:14:09.912Z DEBUG [payment-service] db pool stats active=20 idle=0 waiting=7 max=20
+2026-10-17T09:14:11.045Z WARN  [payment-service] Timeout acquiring connection from pool after 5000ms (waiting=11)
+2026-10-17T09:14:11.046Z ERROR [payment-service] Database connection timeout: could not acquire connection to postgres://payments_app:Sup3rS3cret!@db-primary.internal:5432/payments within 5000ms
+2026-10-17T09:14:11.051Z ERROR [api-gateway] POST /api/checkout 500 5012ms upstream=payment-service request_id=7f2b90
+2026-10-17T09:14:12.330Z WARN  [postgres] remaining connection slots are reserved for non-replication superuser connections
+2026-10-17T09:14:12.877Z ERROR [postgres] FATAL: sorry, too many clients already (max_connections=100)
+2026-10-17T09:14:13.402Z ERROR [payment-service] Database connection timeout: query timeout after 5000ms statement="UPDATE ledger SET status='settled' WHERE id=$1"
+2026-10-17T09:14:13.410Z ERROR [api-gateway] POST /api/checkout 500 5221ms upstream=payment-service request_id=7f2bc4
+2026-10-17T09:14:14.019Z INFO  [auth-service] Token issued user=u_1182 ttl=3600
+2026-10-17T09:14:15.660Z WARN  [api-gateway] p95 latency 4870ms exceeds SLO 800ms route=/api/checkout
+2026-10-17T09:14:16.204Z ERROR [payment-service] Unhandled exception in POST /charges: psycopg.OperationalError: connection timeout expired
+2026-10-17T09:14:16.207Z ERROR [api-gateway] POST /api/checkout 500 5003ms upstream=payment-service request_id=7f2c01
+2026-10-17T09:14:17.881Z WARN  [auth-service] Session lookup slow duration=2140ms backend=postgres
+2026-10-17T09:14:18.993Z ERROR [postgres] FATAL: sorry, too many clients already (max_connections=100)
+2026-10-17T09:14:19.450Z ERROR [api-gateway] GET /api/orders 500 5104ms upstream=payment-service request_id=7f2c33
+2026-10-17T09:14:20.002Z DEBUG [payment-service] db pool stats active=20 idle=0 waiting=34 max=20
+2026-10-17T09:14:21.318Z WARN  [payment-service] Circuit breaker for postgres half-open, retrying in 10s
+2026-10-17T09:14:22.740Z ERROR [api-gateway] POST /api/checkout 500 5011ms upstream=payment-service request_id=7f2c88
+2026-10-17T09:14:24.115Z INFO  [api-gateway] Health check /healthz 200 3ms
+2026-10-17T09:14:25.506Z ERROR [payment-service] Database connection timeout: could not acquire connection within 5000ms (waiting=41)
+2026-10-17T09:14:26.900Z WARN  [api-gateway] Error rate 18.4% on /api/checkout over last 60s

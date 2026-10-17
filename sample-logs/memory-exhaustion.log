@@ -1,0 +1,22 @@
+2026-10-17T11:02:00.004Z INFO  [payment-service] Started payment-service v3.8.1 pid=1 heap_limit=1024MB
+2026-10-17T11:05:00.112Z DEBUG [payment-service] memory heap_used=412MB rss=530MB report_cache_entries=12034
+2026-10-17T11:10:00.098Z DEBUG [payment-service] memory heap_used=566MB rss=688MB report_cache_entries=48810
+2026-10-17T11:15:00.131Z WARN  [payment-service] memory heap_used=731MB (71% of limit) report_cache_entries=97342
+2026-10-17T11:16:41.552Z INFO  [api-gateway] POST /api/settlements/report 200 2210ms
+2026-10-17T11:18:12.004Z WARN  [payment-service] GC pause 1240ms (full GC), heap_used=842MB
+2026-10-17T11:20:00.140Z WARN  [payment-service] memory heap_used=918MB (90% of limit) report_cache_entries=151277
+2026-10-17T11:20:33.871Z ERROR [api-gateway] POST /api/charges 503 Service Unavailable upstream=payment-service (health check failed)
+2026-10-17T11:21:02.317Z WARN  [payment-service] GC pause 3810ms (full GC), heap_used=1001MB
+2026-10-17T11:21:09.660Z ERROR [payment-service] FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+2026-10-17T11:21:09.712Z ERROR [kubelet] Container payment-service-6d9f7 terminated: OOMKilled (exit code 137)
+2026-10-17T11:21:10.004Z WARN  [kubelet] Back-off restarting failed container payment-service in pod payment-service-6d9f7
+2026-10-17T11:21:12.391Z ERROR [api-gateway] POST /api/charges 502 upstream connect error: connection refused (payment-service:8080)
+2026-10-17T11:21:25.008Z INFO  [payment-service] Started payment-service v3.8.1 pid=1 heap_limit=1024MB
+2026-10-17T11:24:00.120Z DEBUG [payment-service] memory heap_used=498MB rss=610MB report_cache_entries=36120
+2026-10-17T11:27:00.090Z WARN  [payment-service] memory heap_used=802MB (78% of limit) report_cache_entries=118904
+2026-10-17T11:28:19.441Z WARN  [payment-service] GC pause 2950ms (full GC), heap_used=955MB
+2026-10-17T11:28:47.003Z ERROR [payment-service] FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+2026-10-17T11:28:47.051Z ERROR [kubelet] Container payment-service-6d9f7 terminated: OOMKilled (exit code 137)
+2026-10-17T11:28:47.300Z WARN  [kubelet] Pod payment-service-6d9f7 status CrashLoopBackOff restarts=2
+2026-10-17T11:28:49.880Z ERROR [api-gateway] POST /api/charges 503 Service Unavailable: no healthy upstream
+2026-10-17T11:28:52.117Z WARN  [api-gateway] Error rate 22.1% on /api/charges over last 60s
